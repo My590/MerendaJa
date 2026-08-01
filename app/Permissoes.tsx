@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenHeader from '../components/ScreenHeader';
 import { colors } from '../constants/theme';
 
@@ -20,8 +21,14 @@ export default function PermissoesScreen() {
   const [cal, setCal] = useState(true);
   const [loc, setLoc] = useState(false);
   return (
-    <SafeAreaView style={styles.safe}>
-      <ScreenHeader title="Permissões" />
+<SafeAreaView
+  style={[
+    styles.safe,
+    {
+      paddingTop: 50,
+    },
+  ]}
+>      <ScreenHeader title="Permissões" />
       <View style={styles.body}>
         <View style={styles.card}>
           <Text style={styles.label}>Acesso a notificações</Text>

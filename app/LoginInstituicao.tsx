@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform, Pressable } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, KeyboardAvoidingView, Platform, Pressable } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import LabeledInput from '../components/LabeledInput';
 import ScreenHeader from '../components/ScreenHeader';
+import LabeledInput from '../components/LabeledInput';
 import BotaoPrimario from '../components/BotaoPrimario';
 import { colors } from '../constants/theme';
 
@@ -35,7 +36,7 @@ export default function LoginInstitution() {
             placeholder="Digite sua senha"
             isPassword value={pass} onChangeText={setPass}
           />
-          <Pressable onPress={() => router.push('/CodigoVerificacao')}>
+          <Pressable onPress={() => router.push('/RecuperarSenha')}>
             <Text style={styles.link}>Esqueceu a senha?</Text>
           </Pressable>
 

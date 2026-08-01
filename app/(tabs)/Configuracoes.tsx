@@ -1,13 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, Pressable } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { colors } from '../../constants/theme';
 
 const ITEMS = [
-  { icon: 'person', label: 'Perfil', route: '/profile', color: '#FFB27A' },
-  { icon: 'lock-closed', label: 'Permissões', route: '/permissoes', color: '#FFC845' },
-  { icon: 'information-circle', label: 'Sobre', route: '/sobre', color: '#FFB27A' },
+  { icon: 'person', label: 'Perfil', route: '/Perfil', color: '#FFB27A' },
+  { icon: 'lock-closed', label: 'Permissões', route: '/Permissoes', color: '#FFC845' },
+  { icon: 'information-circle', label: 'Sobre', route: '/Sobre', color: '#FFB27A' },
   { icon: 'accessibility', label: 'Acessibilidade', route: null, color: '#FFC845' },
   { icon: 'document-text', label: 'Termos de uso', route: null, color: '#FFB27A' },
 ];

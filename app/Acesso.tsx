@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, Pressable, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import ChefLogo from '../components/ChefLogo';
@@ -10,7 +11,7 @@ export default function AccessScreen() {
   return (
     <SafeAreaView style={styles.safe}>
       <View style={styles.hero}>
-        <ChefLogo size={90} />
+        <ChefLogo size={400} />
         <Text style={styles.title}>Merenda Já</Text>
         <Text style={styles.desc}>Como você deseja acessar?</Text>
       </View>

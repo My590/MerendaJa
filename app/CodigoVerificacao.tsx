@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TextInput, Pressable } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import ScreenHeader from '../components/ScreenHeader';
 import ChefLogo from '../components/ChefLogo';
@@ -24,7 +25,7 @@ export default function VerifyCodeScreen() {
       <ScreenHeader title="" />
       <View style={styles.body}>
         <View style={styles.logoWrap}>
-          <ChefLogo size={78} />
+          <ChefLogo size={350} />
         </View>
         <Text style={styles.title}>Código de verificação</Text>
         <Text style={styles.desc}>

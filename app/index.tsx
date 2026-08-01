@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Pressable, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import ChefLogo from '../components/ChefLogo';
@@ -14,7 +15,7 @@ export default function SplashScreen() {
     <SafeAreaView style={styles.safe}>
       <View style={styles.container} testID="splash-screen">
         <View style={styles.top}>
-          <ChefLogo size={96} />
+          <ChefLogo size={400} />
           <Text style={styles.title}>Merenda Já</Text>
           <Text style={styles.subtitle}>GESTÃO DE ALIMENTAÇÃO</Text>
         </View>

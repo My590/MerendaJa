@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Pressable, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import ChefLogo from '../components/ChefLogo';
 import LabeledInput from '../components/LabeledInput';
@@ -16,7 +17,7 @@ export default function LoginScreen() {
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
           <View style={styles.hero}>
-            <ChefLogo size={80} />
+            <ChefLogo size={350} />
             <Text style={styles.title}>Merenda Já</Text>
             <Text style={styles.subtitle}>Entrar na sua conta</Text>
           </View>
@@ -39,7 +40,7 @@ export default function LoginScreen() {
               value={password}
               onChangeText={setPassword}
             />
-            <Pressable onPress={() => router.push('/CodigoVerificacao')}>
+            <Pressable onPress={() => router.push('/RecuperarSenha')}>
               <Text style={styles.link}>Esqueceu a senha?</Text>
             </Pressable>
 

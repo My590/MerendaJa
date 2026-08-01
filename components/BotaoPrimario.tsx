@@ -1,5 +1,6 @@
+import React from 'react';
 import { Pressable, Text, StyleSheet, ActivityIndicator, ViewStyle } from 'react-native';
-import { colors, radius } from '../constants/theme';
+import { colors } from '../constants/theme';
 
 type Props = {
   title: string;
@@ -11,7 +12,7 @@ type Props = {
   testID?: string;
 };
 
-export default function PrimaryButton({
+export default function BotaoPrimeiro({
   title,
   onPress,
   variant = 'primary',
@@ -48,7 +49,7 @@ export default function PrimaryButton({
 const styles = StyleSheet.create({
   base: {
     height: 52,
-    borderRadius: radius.lg,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 24,

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import ScreenHeader from '../components/ScreenHeader';
 import ChefLogo from '../components/ChefLogo';
@@ -17,7 +18,7 @@ export default function ForgotPasswordScreen() {
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView contentContainerStyle={styles.body}>
           <View style={styles.logoWrap}>
-            <ChefLogo size={78} />
+            <ChefLogo size={350} />
           </View>
           <Text style={styles.title}>Recuperar senha</Text>
           <Text style={styles.desc}>
@@ -38,7 +39,7 @@ export default function ForgotPasswordScreen() {
           <BotaoPrimario
             testID="forgot-send-button"
             title="Enviar código"
-            onPress={() => router.push('/RecuperarSenha')}
+            onPress={() => router.push('/CodigoVerificacao')}
             style={{ marginTop: 16 }}
           />
         </ScrollView>
