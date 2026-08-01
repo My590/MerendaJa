@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
-import Logo from '@/src/components/Logo';
-import MenuInferior from '@/src/components/MenuInferior';
-import BotaoPrimario from '@/src/components/BotaoPrimario';
-import { colors } from '@/src/theme/colors';
+import ChefLogo from '../components/ChefLogo';
+import LabeledInput from '../components/LabeledInput';
+import BotaoPrimario from '../components/BotaoPrimario';
+import { colors } from '../constants/theme';
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -39,11 +39,11 @@ export default function LoginScreen() {
               value={password}
               onChangeText={setPassword}
             />
-            <Pressable onPress={() => router.push('/forgot-password')}>
+            <Pressable onPress={() => router.push('/CodigoVerificacao')}>
               <Text style={styles.link}>Esqueceu a senha?</Text>
             </Pressable>
 
-            <PrimaryButton
+            <BotaoPrimario
               testID="login-submit-button"
               title="Entrar"
               onPress={() => router.replace('/(tabs)/Home')}

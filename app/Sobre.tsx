@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Cabecalho from '@/src/components/Cabecalho';
-import Logo from '@/src/components/Logo';
-import { colors } from '@/src/theme/colors';
+import ScreenHeader from '../components/ScreenHeader';
+import ChefLogo from '../components/ChefLogo';
+import { colors } from '../constants/theme';
 
 export default function SobreScreen() {
   return (

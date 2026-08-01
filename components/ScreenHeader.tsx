@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { colors } from '../theme/colors';
+import { colors } from '../constants/theme';
 
 type Props = {
   title: string;

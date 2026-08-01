@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, Pressable, SafeAreaView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
-import ChefLogo from '@/src/components/ChefLogo';
-import { colors } from '@/src/theme/colors';
+import ChefLogo from '../components/ChefLogo';
+import { colors } from '../constants/theme';
 
 export default function AccessScreen() {
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function AccessScreen() {
         <Pressable
           testID="access-student-card"
           style={styles.card}
-          onPress={() => router.push('/login')}
+          onPress={() => router.push('/Login')}
         >
           <View style={styles.iconWrap}>
             <FontAwesome5 name="user-graduate" size={22} color="#fff" />

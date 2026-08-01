@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import MenuInferior from '@/src/components/MenuInferior';
-import Cabecalho from '@/src/components/Cabecalho';
-import BotaoPrimario from '@/src/components/BotaoPrimario';
-import { colors } from '@/src/theme/colors';
+import ScreenHeader from '../components/ScreenHeader';
+import LabeledInput from '../components/LabeledInput';
+import BotaoPrimario from '../components/BotaoPrimario';
+import { colors } from '../constants/theme';
 
 function Select({ placeholder, testID }: { placeholder: string; testID?: string }) {
   return (
@@ -63,7 +63,7 @@ export default function CadastroAluno() {
             containerStyle={{ marginTop: 14 }}
           />
 
-          <PrimaryButton
+          <BotaoPrimario
             testID="aluno-submit-button"
             title="Cadastrar aluno"
             onPress={() => router.back()}

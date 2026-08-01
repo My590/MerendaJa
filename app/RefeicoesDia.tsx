@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, Pressable } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import Cabecalho from '@/src/components/Cabecalho';
-import BotaoPrimario from '@/src/components/BotaoPrimario';
-import { colors } from '@/src/theme/colors';
+import ScreenHeader from '../components/ScreenHeader';
+import BotaoPrimario from '../components/BotaoPrimario';
+import { colors } from '../constants/theme';
 import { useRouter } from 'expo-router';
 
 const MEALS = [
@@ -51,7 +51,7 @@ export default function RefeicoesDia() {
           })}
         </View>
 
-        <PrimaryButton
+        <BotaoPrimario
           testID="refeicoes-continue-button"
           title="Continuar"
           onPress={() => router.back()}

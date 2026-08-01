@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import Cabecalho from '@/src/components/Cabecalho';
-import MenuInferior from '@/src/components/MenuInferior';
-import BotaoPrimario from '@/src/components/BotaoPrimario';
-import { colors } from '@/src/theme/colors';
+import ScreenHeader from '../components/ScreenHeader';
+import LabeledInput from '../components/LabeledInput';
+import BotaoPrimario from '../components/BotaoPrimario';
+import { colors } from '../constants/theme';
 
 export default function NovaTurma() {
   const router = useRouter();
@@ -34,7 +34,7 @@ export default function NovaTurma() {
             </Pressable>
           </View>
 
-          <PrimaryButton
+          <BotaoPrimario
             testID="turma-save-button"
             title="Salvar turma"
             onPress={() => router.back()}

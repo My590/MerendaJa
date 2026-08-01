@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, Pressable } from 'react-native';
-import Cabecalho from '@/src/components/Cabecalho';
-import { colors } from '@/src/theme/colors';
+import ScreenHeader from '../components/ScreenHeader';
+import { colors } from '../constants/theme';
 
 function Toggle({ value, onChange, testID }: any) {
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, Pressable } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { colors } from '@/src/theme/colors';
+import { colors } from '../../constants/theme';
 
 const MEAL_COLORS: Record<string, string> = {
   breakfast: '#FFD79A',

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, Pressable } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { colors } from '@/src/theme/colors';
+import { colors } from '../../constants/theme';
 
 const DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
 

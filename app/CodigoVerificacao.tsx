@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TextInput, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import MenuInferior from '@/src/components/MenuInferior';
-import Logo from '@/src/components/Logo';
-import BotaoPrimario from '@/src/components/BotaoPrimario';
-import { colors } from '@/src/theme/colors';
+import ScreenHeader from '../components/ScreenHeader';
+import ChefLogo from '../components/ChefLogo';
+import BotaoPrimario from '../components/BotaoPrimario';
+import { colors } from '../constants/theme';
 
 export default function VerifyCodeScreen() {
   const router = useRouter();
@@ -51,7 +51,7 @@ export default function VerifyCodeScreen() {
           <Text style={styles.resend}>Reenviar código (00:30)</Text>
         </Pressable>
 
-        <PrimaryButton
+        <BotaoPrimario
           testID="otp-verify-button"
           title="Verificar"
           onPress={() => router.replace('/(tabs)/Home')}

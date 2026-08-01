@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import MenuInferior from '@/src/components/MenuInferior';
-import Cabecalho from '@/src/components/Cabecalho';
-import BotaoPrimario from '@/src/components/BotaoPrimario';
-import { colors } from '@/src/theme/colors';
+import LabeledInput from '../components/LabeledInput';
+import ScreenHeader from '../components/ScreenHeader';
+import BotaoPrimario from '../components/BotaoPrimario';
+import { colors } from '../constants/theme';
 
-export default function RegisterInstitution() {
+export default function LoginInstitution() {
   const router = useRouter();
   const [email, setEmail] = useState('');
-  const [inep, setInep] = useState('');
   const [pass, setPass] = useState('');
-  const [pass2, setPass2] = useState('');
   return (
     <SafeAreaView style={styles.safe}>
       <ScreenHeader title="" />
@@ -21,10 +19,10 @@ export default function RegisterInstitution() {
           <View style={styles.iconWrap}>
             <Ionicons name="business" size={38} color="#fff" />
           </View>
-          <Text style={styles.title}>Cadastro da Instituição</Text>
+          <Text style={styles.title}>Login da Instituição</Text>
 
           <LabeledInput
-            testID="reg-email-input"
+            testID="loginst-email-input"
             label="E-mail institucional"
             placeholder="seu@email.com"
             autoCapitalize="none" keyboardType="email-address"
@@ -32,30 +30,28 @@ export default function RegisterInstitution() {
             containerStyle={{ marginTop: 20 }}
           />
           <LabeledInput
-            testID="reg-inep-input"
-            label="Código de INEP"
-            placeholder="Digite o código do INEP"
-            value={inep} onChangeText={setInep}
-          />
-          <LabeledInput
-            testID="reg-pass-input"
+            testID="loginst-pass-input"
             label="Senha"
             placeholder="Digite sua senha"
             isPassword value={pass} onChangeText={setPass}
           />
-          <LabeledInput
-            testID="reg-pass2-input"
-            label="Confirmar senha"
-            placeholder="Confirme sua senha"
-            isPassword value={pass2} onChangeText={setPass2}
-          />
+          <Pressable onPress={() => router.push('/CodigoVerificacao')}>
+            <Text style={styles.link}>Esqueceu a senha?</Text>
+          </Pressable>
 
-          <PrimaryButton
-            testID="reg-submit-button"
-            title="Cadastrar"
+          <BotaoPrimario
+            testID="loginst-submit-button"
+            title="Entrar"
             onPress={() => router.replace('/(tabs)/Home')}
             style={{ marginTop: 16 }}
           />
+
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>Não tem uma conta? </Text>
+            <Pressable onPress={() => router.push('/CadastroInstituicao')}>
+              <Text style={[styles.footerText, styles.footerLink]}>Criar conta</Text>
+            </Pressable>
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -78,4 +74,12 @@ const styles = StyleSheet.create({
     color: colors.textDark,
     textAlign: 'center',
   },
+  link: {
+    color: colors.primary, fontWeight: '600', fontSize: 13,
+    textAlign: 'right', textDecorationLine: 'underline',
+    marginTop: 2, marginBottom: 6,
+  },
+  footer: { flexDirection: 'row', justifyContent: 'center', marginTop: 18 },
+  footerText: { fontSize: 13, color: colors.textMuted },
+  footerLink: { color: colors.primary, fontWeight: '700' },
 });

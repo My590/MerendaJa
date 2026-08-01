@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
-import Cabecalho from '@/src/components/Cabecalho';
-import Logo from '@/src/components/Logo';
-import MenuInferior from '@/src/components/MenuInferior';
-import BotaoPrimario from '@/src/components/BotaoPrimario';
-import { colors } from '@/src/theme/colors';
+import ScreenHeader from '../components/ScreenHeader';
+import ChefLogo from '../components/ChefLogo';
+import LabeledInput from '../components/LabeledInput';
+import BotaoPrimario from '../components/BotaoPrimario';
+import { colors } from '../constants/theme';
 
 export default function ForgotPasswordScreen() {
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function ForgotPasswordScreen() {
             containerStyle={{ marginTop: 24 }}
           />
 
-          <PrimaryButton
+          <BotaoPrimario
             testID="forgot-send-button"
             title="Enviar código"
             onPress={() => router.push('/RecuperarSenha')}

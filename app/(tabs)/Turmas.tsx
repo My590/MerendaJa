@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, Pressable, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { colors } from '@/src/theme/colors';
+import { colors } from '../../constants/theme';
 
 const TURMAS = [
   { name: '1º Ano A', students: 25 },
@@ -48,7 +48,7 @@ export default function TurmasScreen() {
         <Pressable
           testID="add-turma-button"
           style={styles.addBtn}
-          onPress={() => router.push('/nova-turma')}
+          onPress={() => router.push('/NovaTurma')}
         >
           <Text style={styles.addBtnText}>+ Adicionar turma</Text>
         </Pressable>

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable, SafeAreaView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import Logo from '@/src/components/Logo';
-import BotaoPrimario from '@/src/components/BotaoPrimario';
-import { colors } from '@/src/theme/colors';
+import ChefLogo from '../components/ChefLogo';
+import BotaoPrimario from '../components/BotaoPrimario';
+import { colors } from '../constants/theme';
 
 export default function SplashScreen() {
   const router = useRouter();
@@ -44,7 +44,7 @@ export default function SplashScreen() {
           <Text style={styles.termsText}>Li e concordo com os termos de uso</Text>
         </Pressable>
 
-        <PrimaryButton
+        <BotaoPrimario
           testID="splash-start-button"
           title="Começar"
           onPress={() => router.push('/Acesso')}
