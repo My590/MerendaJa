@@ -1,0 +1,60 @@
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, SafeAreaView, Pressable } from 'react-native';
+import Cabecalho from '@/src/components/Cabecalho';
+import { colors } from '@/src/theme/colors';
+
+function Toggle({ value, onChange, testID }: any) {
+  return (
+    <Pressable
+      testID={testID}
+      onPress={() => onChange(!value)}
+      style={[styles.toggle, value ? styles.toggleOn : styles.toggleOff]}
+    >
+      <View style={[styles.thumb, value ? styles.thumbOn : styles.thumbOff]} />
+    </Pressable>
+  );
+}
+
+export default function PermissoesScreen() {
+  const [notif, setNotif] = useState(true);
+  const [cal, setCal] = useState(true);
+  const [loc, setLoc] = useState(false);
+  return (
+    <SafeAreaView style={styles.safe}>
+      <ScreenHeader title="Permissões" />
+      <View style={styles.body}>
+        <View style={styles.card}>
+          <Text style={styles.label}>Acesso a notificações</Text>
+          <Toggle testID="toggle-notifications" value={notif} onChange={setNotif} />
+        </View>
+        <View style={styles.card}>
+          <Text style={styles.label}>Acesso ao calendário</Text>
+          <Toggle testID="toggle-calendar" value={cal} onChange={setCal} />
+        </View>
+        <View style={styles.card}>
+          <Text style={styles.label}>Acesso à localização</Text>
+          <Toggle testID="toggle-location" value={loc} onChange={setLoc} />
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: colors.cream },
+  body: { padding: 18, gap: 12 },
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 14,
+    padding: 14,
+  },
+  label: { flex: 1, fontSize: 14, fontWeight: '600', color: colors.textDark },
+  toggle: { width: 44, height: 26, borderRadius: 13, padding: 3, justifyContent: 'center' },
+  toggleOn: { backgroundColor: colors.primary },
+  toggleOff: { backgroundColor: '#E1E1E1' },
+  thumb: { width: 20, height: 20, borderRadius: 10, backgroundColor: '#fff' },
+  thumbOn: { alignSelf: 'flex-end' },
+  thumbOff: { alignSelf: 'flex-start' },
+});

@@ -1,0 +1,81 @@
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
+import MenuInferior from '@/src/components/MenuInferior';
+import Cabecalho from '@/src/components/Cabecalho';
+import BotaoPrimario from '@/src/components/BotaoPrimario';
+import { colors } from '@/src/theme/colors';
+
+export default function RegisterInstitution() {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [inep, setInep] = useState('');
+  const [pass, setPass] = useState('');
+  const [pass2, setPass2] = useState('');
+  return (
+    <SafeAreaView style={styles.safe}>
+      <ScreenHeader title="" />
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <ScrollView contentContainerStyle={styles.body}>
+          <View style={styles.iconWrap}>
+            <Ionicons name="business" size={38} color="#fff" />
+          </View>
+          <Text style={styles.title}>Cadastro da Instituição</Text>
+
+          <LabeledInput
+            testID="reg-email-input"
+            label="E-mail institucional"
+            placeholder="seu@email.com"
+            autoCapitalize="none" keyboardType="email-address"
+            value={email} onChangeText={setEmail}
+            containerStyle={{ marginTop: 20 }}
+          />
+          <LabeledInput
+            testID="reg-inep-input"
+            label="Código de INEP"
+            placeholder="Digite o código do INEP"
+            value={inep} onChangeText={setInep}
+          />
+          <LabeledInput
+            testID="reg-pass-input"
+            label="Senha"
+            placeholder="Digite sua senha"
+            isPassword value={pass} onChangeText={setPass}
+          />
+          <LabeledInput
+            testID="reg-pass2-input"
+            label="Confirmar senha"
+            placeholder="Confirme sua senha"
+            isPassword value={pass2} onChangeText={setPass2}
+          />
+
+          <PrimaryButton
+            testID="reg-submit-button"
+            title="Cadastrar"
+            onPress={() => router.replace('/(tabs)/Home')}
+            style={{ marginTop: 16 }}
+          />
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: colors.cream },
+  body: { padding: 22, paddingTop: 4 },
+  iconWrap: {
+    width: 78, height: 78, borderRadius: 39,
+    backgroundColor: colors.primary,
+    alignSelf: 'center',
+    alignItems: 'center', justifyContent: 'center',
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: colors.textDark,
+    textAlign: 'center',
+  },
+});

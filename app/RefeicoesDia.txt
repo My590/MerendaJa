@@ -1,0 +1,105 @@
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, Pressable } from 'react-native';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import Cabecalho from '@/src/components/Cabecalho';
+import BotaoPrimario from '@/src/components/BotaoPrimario';
+import { colors } from '@/src/theme/colors';
+import { useRouter } from 'expo-router';
+
+const MEALS = [
+  { key: 'cafe', title: 'Café da manhã', icon: 'coffee', color: '#FFD79A' },
+  { key: 'almoco', title: 'Almoço', icon: 'food', color: '#FFB27A' },
+  { key: 'lanche', title: 'Lanche da tarde', icon: 'fruit-cherries', color: '#FFC845' },
+  { key: 'jantar', title: 'Jantar', icon: 'silverware-variant', color: '#FFB27A' },
+];
+
+export default function RefeicoesDia() {
+  const router = useRouter();
+  const [selected, setSelected] = useState<Record<string, boolean>>({ cafe: true });
+  const toggle = (k: string) => setSelected(s => ({ ...s, [k]: !s[k] }));
+
+  return (
+    <SafeAreaView style={styles.safe}>
+      <ScreenHeader title="" />
+      <ScrollView contentContainerStyle={styles.body}>
+        <Text style={styles.title}>Qual refeição você{'\n'}fará hoje?</Text>
+
+        <View style={styles.select}>
+          <Text style={styles.selectText}>Segunda-feira</Text>
+          <Ionicons name="chevron-down" size={18} color={colors.textMuted} />
+        </View>
+
+        <View style={{ gap: 10, marginTop: 6 }}>
+          {MEALS.map(m => {
+            const active = !!selected[m.key];
+            return (
+              <Pressable
+                key={m.key}
+                testID={`meal-option-${m.key}`}
+                style={styles.row}
+                onPress={() => toggle(m.key)}
+              >
+                <View style={[styles.iconWrap, { backgroundColor: m.color }]}>
+                  <MaterialCommunityIcons name={m.icon as any} size={22} color="#fff" />
+                </View>
+                <Text style={styles.rowTitle}>{m.title}</Text>
+                <View style={[styles.check, active && styles.checkActive]}>
+                  {active && <Ionicons name="checkmark" size={14} color="#fff" />}
+                </View>
+              </Pressable>
+            );
+          })}
+        </View>
+
+        <PrimaryButton
+          testID="refeicoes-continue-button"
+          title="Continuar"
+          onPress={() => router.back()}
+          style={{ marginTop: 22 }}
+        />
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: colors.cream },
+  body: { padding: 20 },
+  title: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: colors.textDark,
+    marginBottom: 16,
+  },
+  select: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: colors.inputBorder,
+    height: 48,
+    paddingHorizontal: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 14,
+  },
+  selectText: { flex: 1, color: colors.textDark, fontSize: 14, fontWeight: '600' },
+  row: {
+    backgroundColor: '#fff',
+    borderRadius: 14,
+    padding: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  iconWrap: {
+    width: 40, height: 40, borderRadius: 10, alignItems: 'center', justifyContent: 'center',
+  },
+  rowTitle: { flex: 1, fontSize: 15, fontWeight: '700', color: colors.textDark },
+  check: {
+    width: 24, height: 24, borderRadius: 6,
+    borderWidth: 1.5, borderColor: colors.primary,
+    alignItems: 'center', justifyContent: 'center',
+    backgroundColor: '#fff',
+  },
+  checkActive: { backgroundColor: colors.primary },
+});
