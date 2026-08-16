@@ -47,7 +47,7 @@ export default function LoginScreen() {
             <BotaoPrimario
               testID="login-submit-button"
               title="Entrar"
-              onPress={() => router.replace('/(tabs)/Home')}
+              onPress={() => router.replace('/(tabs)/HomeAluno')}
               style={{ marginTop: 16 }}
             />
 

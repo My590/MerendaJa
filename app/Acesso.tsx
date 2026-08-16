@@ -28,7 +28,7 @@ export default function AccessScreen() {
           <View style={{ flex: 1 }}>
             <Text style={styles.cardTitle}>Sou Estudante</Text>
             <Text style={styles.cardDesc}>Acesse seu cardápio e informações</Text>
-          </View>
+          </View>y
         </Pressable>
 
         <Pressable
