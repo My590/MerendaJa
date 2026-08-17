@@ -11,6 +11,7 @@ const ITEMS = [
   { icon: 'information-circle', label: 'Sobre', route: '/Sobre', color: '#FFB27A' },
   { icon: 'accessibility', label: 'Acessibilidade', route: null, color: '#FFC845' },
   { icon: 'document-text', label: 'Termos de uso', route: null, color: '#FFB27A' },
+  { icon: 'document-text', label: 'Segurança e Privacidade', route: null, color: '#FFB27A' },
 ];
 
 export default function ConfigScreen() {

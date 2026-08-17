@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import { colors } from '../../constants/theme';
 
 const DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
@@ -14,6 +15,7 @@ const MEALS = [
 
 export default function CardapioScreen() {
   const [day, setDay] = useState('Seg');
+  const router = useRouter();
   return (
     <SafeAreaView style={styles.safe}>
       <View style={styles.headerWrap}>
@@ -51,9 +53,14 @@ export default function CardapioScreen() {
           </View>
         ))}
 
-        <Pressable style={styles.addBtn} testID="add-meal-button">
-          <Text style={styles.addBtnText}>Adicionar refeição</Text>
+        <Pressable
+          testID="add-refeicao"
+          style={styles.addBtn}
+          onPress={() => router.push('/AddRefeicao')}
+        >
+          <Text>Adicionar refeição</Text>
         </Pressable>
+
       </ScrollView>
     </SafeAreaView>
   );

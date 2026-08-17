@@ -4,7 +4,8 @@ import { useRouter } from 'expo-router';
 
 import ChefLogo from '../components/ChefLogo';
 import { colors } from '../constants/theme';
-
+import { Stack } from 'expo-router';
+    
 export default function SplashScreen() {
   const router = useRouter();
 
@@ -22,6 +23,7 @@ export default function SplashScreen() {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
