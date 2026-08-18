@@ -58,7 +58,7 @@ export default function CardapioScreen() {
           style={styles.addBtn}
           onPress={() => router.push('/AddRefeicao')}
         >
-          <Text>Adicionar refeição</Text>
+          <Text style={styles.addBtnText}>Adicionar refeição</Text>
         </Pressable>
 
       </ScrollView>

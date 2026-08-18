@@ -13,7 +13,7 @@ export default function AddRefeicao() {
   const [nome, setNome] = useState('');
   return (
     <SafeAreaView style={styles.safe}>
-      <ScreenHeader title="Adicionar refeição" />
+      <ScreenHeader title="Adicionar refeição"/>
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView contentContainerStyle={styles.body}>
           <View style={styles.avatar}>
@@ -49,7 +49,7 @@ export default function AddRefeicao() {
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.cream },
+  safe: { flex: 1, backgroundColor: colors.splashBg },
   body: { padding: 22, paddingTop: 4 },
   avatar: {
     width: 78, height: 78, borderRadius: 39,
@@ -65,5 +65,5 @@ const styles = StyleSheet.create({
     height: 48, paddingHorizontal: 14,
     flexDirection: 'row', alignItems: 'center',
   },
-  selectText: { flex: 1, color: colors.textLight, fontSize: 14 },
+  selectText: { flex: 1, color: colors.cream, fontSize: 14 },
 });

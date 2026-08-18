@@ -1,46 +1,121 @@
 import React from 'react';
-import { Tabs } from 'expo-router';
+import { Tabs, useRouter } from 'expo-router';
 import { View, Text, Pressable, StyleSheet, Platform } from 'react-native';
-import { Ionicons, MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons';
+import {
+  Ionicons,
+  MaterialCommunityIcons,
+  FontAwesome5,
+} from '@expo/vector-icons';
 import { colors } from '../../constants/theme';
 
+const TIPO_USUARIO: 'aluno' | 'instituicao' = 'instituicao'; // TODO: fetch from auth context or similar
+
+const isAluno = TIPO_USUARIO === 'aluno';
+
 const TAB_ICONS: Record<string, (focused: boolean) => React.ReactNode> = {
-  Home: (f) => <Ionicons name={f ? 'home' : 'home-outline'} size={22} color={f ? colors.primary : colors.textMuted} />,
-  Cardapio: (f) => <MaterialCommunityIcons name="silverware-fork-knife" size={22} color={f ? colors.primary : colors.textMuted} />,
-  Turmas: (f) => <FontAwesome5 name="university" size={20} color={f ? colors.primary : colors.textMuted} />,
-  Configuracoes: (f) => <Ionicons name={f ? 'settings' : 'settings-outline'} size={22} color={f ? colors.primary : colors.textMuted} />,
+  Home: (f) => (
+    <Ionicons
+      name={f ? 'home' : 'home-outline'}
+      size={22}
+      color={f ? colors.primary : colors.textMuted}
+    />
+  ),
+
+  Cardapio: (f) => (
+    <MaterialCommunityIcons
+      name="silverware-fork-knife"
+      size={22}
+      color={f ? colors.primary : colors.textMuted}
+    />
+  ),
+
+  Turmas: (f) => (
+    <FontAwesome5
+      name="university"
+      size={20}
+      color={f ? colors.primary : colors.textMuted}
+    />
+  ),
+
+  Configuracoes: (f) => (
+    <Ionicons
+      name={f ? 'settings' : 'settings-outline'}
+      size={22}
+      color={f ? colors.primary : colors.textMuted}
+    />
+  ),
 };
 
 const LABELS: Record<string, string> = {
-  home: 'Início',
-  cardapio: 'Cardápio',
-  turmas: 'Turmas',
-  config: 'Config.',
+  Home: 'Início',
+  Cardapio: 'Cardápio',
+  Turmas: 'Turmas',
+  Configuracoes: 'Config.',
 };
 
 export default function TabsLayout() {
+  const router = useRouter();
+
+  const irParaHome = () => {
+    if (isAluno) {
+      router.replace('/HomeAluno');
+    } else {
+      router.replace('/Home');
+    }
+  };
+
   return (
     <Tabs
-      screenOptions={{ headerShown: false }}
+      screenOptions={{
+        headerShown: false,
+      }}
       tabBar={({ state, navigation }) => (
         <View style={styles.bar} testID="bottom-tab-bar">
-          {state.routes.map((route, index) => {
-            const focused = state.index === index;
-            const label = LABELS[route.name] ?? route.name;
-            return (
-              <Pressable
-                key={route.key}
-                testID={`tab-${route.name}`}
-                style={styles.tabItem}
-                onPress={() => navigation.navigate(route.name)}
-              >
-                <View style={[styles.iconWrap, focused && styles.iconWrapActive]}>
-                  {TAB_ICONS[route.name]?.(focused)}
-                </View>
-                <Text style={[styles.label, focused && styles.labelActive]}>{label}</Text>
-              </Pressable>
-            );
-          })}
+          {state.routes
+            .filter((route) =>
+              ['Home', 'Cardapio', 'Turmas', 'Configuracoes'].includes(
+                route.name
+              )
+            )
+            .map((route) => {
+              const focused =
+                state.routes[state.index]?.key === route.key;
+
+              const label = LABELS[route.name] ?? route.name;
+
+              return (
+                <Pressable
+                  key={route.key}
+                  testID={`tab-${route.name}`}
+                  style={styles.tabItem}
+                  onPress={() => {
+                    if (route.name === 'Home') {
+                      irParaHome();
+                    } else {
+                      navigation.navigate(route.name);
+                    }
+                  }}
+                >
+                  <View
+                    style={[
+                      styles.iconWrap,
+                      focused && styles.iconWrapActive,
+                    ]}
+                  >
+                    {TAB_ICONS[route.name]?.(focused)}
+                  </View>
+
+                  <Text
+                    style={[
+                      styles.label,
+                      focused && styles.labelActive,
+                    ]}
+                  >
+                    {label}
+                  </Text>
+                </Pressable>
+              );
+            })}
         </View>
       )}
     >
