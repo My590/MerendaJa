@@ -14,10 +14,24 @@ const MEALS = [
   { key: 'jantar', title: 'Jantar', icon: 'silverware-variant', color: '#FFB27A' },
 ];
 
+const DIAS_SEMANA = [
+  { value: 'segunda', label: 'Segunda-feira' },
+  { value: 'terca', label: 'Terça-feira' },
+  { value: 'quarta', label: 'Quarta-feira' },
+  { value: 'quinta', label: 'Quinta-feira' },
+  { value: 'sexta', label: 'Sexta-feira' },
+];
+
 export default function RefeicoesDia() {
   const router = useRouter();
   const [selected, setSelected] = useState<Record<string, boolean>>({ cafe: true });
   const toggle = (k: string) => setSelected(s => ({ ...s, [k]: !s[k] }));
+
+  const [diaSelecionado, setDiaSelecionado] = useState('segunda');
+  const [diaMenuAberto, setDiaMenuAberto] = useState(false);
+
+  const labelDiaSelecionado =
+    DIAS_SEMANA.find(d => d.value === diaSelecionado)?.label ?? 'Selecione o dia';
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -25,10 +39,39 @@ export default function RefeicoesDia() {
       <ScrollView contentContainerStyle={styles.body}>
         <Text style={styles.title}>Qual refeição você{'\n'}fará hoje?</Text>
 
-        <View style={styles.select}>
-          <Text style={styles.selectText}>Segunda-feira</Text>
-          <Ionicons name="chevron-down" size={18} color={colors.textMuted} />
-        </View>
+        <Pressable
+          style={styles.select}
+          onPress={() => setDiaMenuAberto(prev => !prev)}
+        >
+          <Text style={styles.selectText}>{labelDiaSelecionado}</Text>
+          <Ionicons
+            name={diaMenuAberto ? 'chevron-up' : 'chevron-down'}
+            size={18}
+            color={colors.textMuted}
+          />
+        </Pressable>
+
+        {diaMenuAberto && (
+          <View style={styles.dropdown}>
+            {DIAS_SEMANA.map(dia => {
+              const ativo = dia.value === diaSelecionado;
+              return (
+                <Pressable
+                  key={dia.value}
+                  style={[styles.dropdownItem, ativo && styles.dropdownItemAtivo]}
+                  onPress={() => {
+                    setDiaSelecionado(dia.value);
+                    setDiaMenuAberto(false);
+                  }}
+                >
+                  <Text style={[styles.dropdownItemText, ativo && styles.dropdownItemTextAtivo]}>
+                    {dia.label}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
+        )}
 
         <View style={{ gap: 10, marginTop: 6 }}>
           {MEALS.map(m => {
@@ -84,6 +127,30 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   selectText: { flex: 1, color: colors.textDark, fontSize: 14, fontWeight: '600' },
+  dropdown: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: colors.inputBorder,
+    marginTop: -8,
+    marginBottom: 14,
+    overflow: 'hidden',
+  },
+  dropdownItem: {
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+  },
+  dropdownItemAtivo: {
+    backgroundColor: colors.primary,
+  },
+  dropdownItemText: {
+    fontSize: 14,
+    color: colors.textDark,
+  },
+  dropdownItemTextAtivo: {
+    color: '#fff',
+    fontWeight: '600',
+  },
   row: {
     backgroundColor: '#fff',
     borderRadius: 14,

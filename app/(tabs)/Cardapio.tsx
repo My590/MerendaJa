@@ -61,6 +61,14 @@ export default function CardapioScreen() {
           <Text style={styles.addBtnText}>Adicionar refeição</Text>
         </Pressable>
 
+        <Pressable
+          testID="add-refeicao"
+          style={styles.addBtn}
+          onPress={() => router.push('/Erro')}
+        >
+          <Text style={styles.addBtnText}>Editar refeição</Text>
+        </Pressable>
+
       </ScrollView>
     </SafeAreaView>
   );

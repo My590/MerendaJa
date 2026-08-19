@@ -4,14 +4,16 @@ import { useRouter } from 'expo-router';
 
 import ChefLogo from '../components/ChefLogo';
 import { colors } from '../constants/theme';
-import { Stack } from 'expo-router';
-    
+import { registrarParaNotificacoes } from './Notifica';
+
 export default function SplashScreen() {
   const router = useRouter();
 
   useEffect(() => {
+    registrarParaNotificacoes();
+
     const timer = setTimeout(() => {
-      router.replace('/');
+      router.replace('/Inicio');
     }, 2500);
 
     return () => clearTimeout(timer);
@@ -23,7 +25,6 @@ export default function SplashScreen() {
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

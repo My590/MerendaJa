@@ -35,6 +35,14 @@ export default function NovaTurma() {
             </Pressable>
           </View>
 
+          <View style={{ marginTop: 16 }}>
+            <Text style={styles.label}>Adcione alunos</Text>
+            <Pressable testID="turma-alunos-select" style={styles.select}>
+              <Text style={styles.selectText}>Selecione os alunos</Text>
+              <Ionicons name="chevron-down" size={18} color={colors.textMuted} />
+            </Pressable>
+          </View>
+
           <BotaoPrimario
             testID="turma-save-button"
             title="Salvar turma"
